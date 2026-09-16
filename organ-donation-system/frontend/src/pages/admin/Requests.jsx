@@ -85,8 +85,8 @@ const AdminRequests = () => {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-20 gap-3">
-        <RefreshCw className="animate-spin text-teal-400" size={32} />
-        <p className="text-sm text-slate-400">Loading requests pipeline...</p>
+        <RefreshCw className="animate-spin text-rose-500" size={32} />
+        <p className="text-sm text-slate-600">Loading requests pipeline...</p>
       </div>
     );
   }
@@ -97,16 +97,16 @@ const AdminRequests = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-100">Organ Request Approvals</h1>
-          <p className="text-slate-400 text-sm">Review clinical reasons and approve matching requests.</p>
+          <h1 className="text-2xl font-bold text-slate-900">Organ Request Approvals</h1>
+          <p className="text-slate-600 text-sm">Review clinical reasons and approve matching requests.</p>
         </div>
 
         {/* Filters */}
-        <div className="flex bg-slate-950 p-1 rounded-lg border border-slate-800 self-start">
+        <div className="flex bg-slate-100 p-1 rounded-lg border border-slate-200 self-start">
           <button
             onClick={() => setFilterPending(true)}
             className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all ${
-              filterPending ? 'bg-slate-800 text-slate-100 shadow' : 'text-slate-400 hover:text-slate-200'
+              filterPending ? 'bg-white text-slate-900 shadow-sm border border-slate-200' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             Pending Review
@@ -114,7 +114,7 @@ const AdminRequests = () => {
           <button
             onClick={() => setFilterPending(false)}
             className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all ${
-              !filterPending ? 'bg-slate-800 text-slate-100 shadow' : 'text-slate-400 hover:text-slate-200'
+              !filterPending ? 'bg-white text-slate-900 shadow-sm border border-slate-200' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             All Requests
@@ -123,25 +123,25 @@ const AdminRequests = () => {
       </div>
 
       {successMsg && (
-        <div className="p-3.5 bg-teal-500/10 border border-teal-500/20 rounded-lg text-sm text-teal-400 flex items-center gap-3">
-          <CheckCircle size={18} className="flex-shrink-0" />
+        <div className="p-3.5 bg-emerald-50 border border-emerald-200 rounded-lg text-sm text-emerald-700 flex items-center gap-3">
+          <CheckCircle size={18} className="flex-shrink-0 text-emerald-600" />
           <span>{successMsg}</span>
         </div>
       )}
 
       {errorMsg && (
-        <div className="p-3.5 bg-red-500/10 border border-red-500/20 rounded-lg text-sm text-red-400 flex items-center gap-3">
-          <AlertTriangle size={18} className="flex-shrink-0" />
+        <div className="p-3.5 bg-rose-50 border border-rose-200 rounded-lg text-sm text-rose-700 flex items-center gap-3">
+          <AlertTriangle size={18} className="flex-shrink-0 text-rose-600" />
           <span>{errorMsg}</span>
         </div>
       )}
 
-      <Card title="Requests Queue" subtitle="Authorized hospital organ requests requiring clearance">
+      <Card title="Requests Queue" subtitle="Authorized hospital organ requests requiring clearance" className="border border-rose-100 bg-white shadow-sm">
         {requests.length > 0 ? (
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-slate-800 text-sm">
+            <table className="min-w-full divide-y divide-slate-200 text-sm">
               <thead>
-                <tr className="text-slate-400 text-xs font-bold uppercase tracking-wider text-left">
+                <tr className="text-slate-500 text-xs font-bold uppercase tracking-wider text-left">
                   <th className="pb-3 pt-2">ID</th>
                   <th className="pb-3 pt-2">Patient Code</th>
                   <th className="pb-3 pt-2">Organ Type</th>
@@ -151,15 +151,15 @@ const AdminRequests = () => {
                   <th className="pb-3 pt-2 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/50 text-slate-200">
+              <tbody className="divide-y divide-slate-100 text-slate-800">
                 {requests.map((req) => (
-                  <tr key={req.requestId} className="hover:bg-slate-900/30 transition-colors">
-                    <td className="py-3.5 font-mono text-slate-500 text-xs">#{req.requestId}</td>
-                    <td className="py-3.5 font-semibold">{req.patientName} ({req.patientAge}y)</td>
+                  <tr key={req.requestId} className="hover:bg-rose-50/30 transition-colors">
+                    <td className="py-3.5 font-mono text-slate-400 text-xs">#{req.requestId}</td>
+                    <td className="py-3.5 font-semibold text-slate-900">{req.patientName} ({req.patientAge}y)</td>
                     <td className="py-3.5">{req.organType?.name} ({req.patientBloodType})</td>
-                    <td className="py-3.5 font-medium text-slate-300">
+                    <td className="py-3.5 font-medium text-slate-700">
                       <div className="flex items-center gap-1.5">
-                        <Hospital size={13} className="text-slate-500" />
+                        <Hospital size={13} className="text-slate-400" />
                         {req.hospitalName}
                       </div>
                     </td>
@@ -176,7 +176,7 @@ const AdminRequests = () => {
                         <Button 
                           variant="ghost" 
                           onClick={() => openDetails(req)}
-                          className="hover:bg-slate-800 p-1.5 rounded-lg"
+                          className="hover:bg-slate-100 p-1.5 rounded-lg text-slate-600"
                         >
                           <Eye size={15} />
                         </Button>
@@ -185,7 +185,7 @@ const AdminRequests = () => {
                             <Button 
                               variant="outline"
                               onClick={() => { setSelectedRequest(req); handleUpdateStatus(req.requestId, 'APPROVED'); }}
-                              className="text-[10px] py-1 px-2.5 text-teal-400 border-teal-500/25 hover:bg-teal-500/10 font-bold"
+                              className="text-[10px] py-1 px-2.5 text-rose-600 border-rose-200 hover:bg-rose-50 font-bold"
                             >
                               Approve
                             </Button>
@@ -242,17 +242,17 @@ const AdminRequests = () => {
         }
       >
         {selectedRequest && (
-          <div className="space-y-6 text-sm text-slate-300">
+          <div className="space-y-6 text-sm text-slate-700">
             
             {/* Grid attributes */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-slate-950 p-4 rounded-xl border border-slate-800">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200">
               <div>
                 <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider block">Patient Code</span>
-                <span className="font-semibold text-slate-200">{selectedRequest.patientName} ({selectedRequest.patientAge}y)</span>
+                <span className="font-semibold text-slate-900">{selectedRequest.patientName} ({selectedRequest.patientAge}y)</span>
               </div>
               <div>
                 <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider block">Organ Requested</span>
-                <span className="font-bold text-slate-200">{selectedRequest.organType?.name} ({selectedRequest.patientBloodType})</span>
+                <span className="font-bold text-slate-900">{selectedRequest.organType?.name} ({selectedRequest.patientBloodType})</span>
               </div>
               <div>
                 <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider block">Urgency Status</span>
@@ -260,26 +260,26 @@ const AdminRequests = () => {
               </div>
               <div>
                 <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider block">Priority Score</span>
-                <span className="font-bold text-teal-400 text-base">{selectedRequest.priority || 0}</span>
+                <span className="font-bold text-rose-600 text-base">{selectedRequest.priority || 0}</span>
               </div>
             </div>
 
             {/* Hospital information */}
-            <div className="p-4 bg-slate-950 rounded-xl border border-slate-800 flex items-start gap-3">
-              <Hospital className="text-teal-400 mt-0.5" />
+            <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-start gap-3">
+              <Hospital className="text-rose-500 mt-0.5" />
               <div>
                 <span className="text-xs text-slate-500 font-bold uppercase tracking-wider block">Requester Hospital Details</span>
-                <span className="text-sm font-semibold text-slate-200 mt-1 block">{selectedRequest.hospitalName}</span>
-                <span className="text-xs text-slate-400 block mt-0.5">Location: {selectedRequest.hospitalLocation}</span>
+                <span className="text-sm font-semibold text-slate-900 mt-1 block">{selectedRequest.hospitalName}</span>
+                <span className="text-xs text-slate-600 block mt-0.5">Location: {selectedRequest.hospitalLocation}</span>
               </div>
             </div>
 
             {/* Medical reason */}
             <div className="space-y-1.5">
-              <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                <AlertCircle size={14} className="text-teal-400" /> Clinical Justification
+              <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+                <AlertCircle size={14} className="text-rose-500" /> Clinical Justification
               </h4>
-              <p className="p-3 bg-slate-950 rounded-lg border border-slate-800 text-xs leading-normal">
+              <p className="p-3 bg-slate-50 rounded-lg border border-slate-200 text-xs leading-normal text-slate-700">
                 {selectedRequest.medicalReason}
               </p>
             </div>
@@ -287,14 +287,14 @@ const AdminRequests = () => {
             {/* Additional notes */}
             {selectedRequest.additionalNotes && (
               <div className="space-y-1.5">
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Additional notes</h4>
-                <p className="p-3 bg-slate-950 rounded-lg border border-slate-800 text-xs">
+                <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider">Additional notes</h4>
+                <p className="p-3 bg-slate-50 rounded-lg border border-slate-200 text-xs text-slate-700">
                   {selectedRequest.additionalNotes}
                 </p>
               </div>
             )}
 
-            <div className="h-px bg-slate-800"></div>
+            <div className="h-px bg-slate-200"></div>
 
             {/* Review comments */}
             {selectedRequest.status === 'PENDING' && (

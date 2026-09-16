@@ -20,13 +20,13 @@ const Sidebar = () => {
   const linkClass = ({ isActive }) => 
     `flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
       isActive 
-        ? 'bg-gradient-to-r from-teal-500/20 to-indigo-500/10 text-teal-400 border-l-4 border-teal-500 shadow-inner' 
-        : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
+        ? 'bg-rose-50 text-rose-600 border-l-4 border-rose-500 shadow-sm' 
+        : 'text-slate-600 hover:text-rose-600 hover:bg-rose-50/60'
     }`;
 
   const renderDonorLinks = () => (
     <>
-      <div className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
+      <div className="px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider text-rose-500/80">
         Donor Portal
       </div>
       <NavLink to="/donor/dashboard" className={linkClass}>
@@ -42,7 +42,7 @@ const Sidebar = () => {
 
   const renderHospitalLinks = () => (
     <>
-      <div className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
+      <div className="px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider text-rose-500/80">
         Hospital Portal
       </div>
       <NavLink to="/hospital/dashboard" className={linkClass}>
@@ -62,7 +62,7 @@ const Sidebar = () => {
 
   const renderAdminLinks = () => (
     <>
-      <div className="px-4 py-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
+      <div className="px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider text-rose-500/80">
         Admin Console
       </div>
       <NavLink to="/admin/dashboard" className={linkClass}>
@@ -85,12 +85,12 @@ const Sidebar = () => {
   );
 
   return (
-    <aside className="w-64 bg-slate-950 border-r border-slate-900 min-h-[calc(100vh-73px)] p-4 flex flex-col gap-6 select-none">
-      <div className="flex flex-col gap-1 px-4 py-2">
-        <span className="text-xs text-slate-500">Log-in Session</span>
-        <span className="text-sm font-semibold truncate text-slate-300">{user.email}</span>
+    <aside className="w-64 bg-white border-r border-rose-100 min-h-[calc(100vh-65px)] p-4 flex flex-col gap-5 select-none">
+      <div className="flex flex-col gap-0.5 px-4 py-2 bg-slate-50 rounded-xl border border-slate-100">
+        <span className="text-[11px] font-medium text-slate-400">Log-in Session</span>
+        <span className="text-sm font-semibold truncate text-slate-800">{user.email}</span>
       </div>
-      <div className="h-px bg-slate-900"></div>
+      <div className="h-px bg-slate-100"></div>
       
       <nav className="flex flex-col gap-1.5">
         {user.role === 'DONOR' && renderDonorLinks()}

@@ -1,9 +1,8 @@
 package org.lifelink.repository;
 
 import org.lifelink.entity.Donor;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.lifelink.entity.DonorOrgan;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,12 +12,16 @@ import java.util.Optional;
  * Repository interface for Donor entity
  */
 @Repository
-public interface DonorRepository extends JpaRepository<Donor, Long> {
+public interface DonorRepository extends MongoRepository<Donor, Long> {
 
     /**
      * Find donor by user ID
      */
-    Optional<Donor> findByUser_UserId(Long userId);
+    default Optional<Donor> findByUser_UserId(Long userId) {
+        return findAll().stream()
+                .filter(donor -> donor.getUser() != null && userId.equals(donor.getUser().getUserId()))
+                .findFirst();
+    }
 
     /**
      * Find all verified donors
@@ -53,30 +56,36 @@ public interface DonorRepository extends JpaRepository<Donor, Long> {
     /**
      * Search donors by multiple criteria
      */
-    @Query("SELECT DISTINCT d FROM Donor d " +
-            "LEFT JOIN d.donorOrgans do " +
-            "WHERE (:bloodType IS NULL OR d.bloodType = :bloodType) " +
-            "AND (:city IS NULL OR LOWER(d.city) LIKE LOWER(CONCAT('%', :city, '%'))) " +
-            "AND (:state IS NULL OR LOWER(d.state) LIKE LOWER(CONCAT('%', :state, '%'))) " +
-            "AND (:organTypeId IS NULL OR do.organType.organTypeId = :organTypeId) " +
-            "AND d.isVerified = true " +
-            "AND d.consentStatus = 'APPROVED' " +
-            "AND (do.availabilityStatus IS NULL OR do.availabilityStatus = 'AVAILABLE')")
-    List<Donor> searchDonors(
-            @Param("bloodType") Donor.BloodType bloodType,
-            @Param("city") String city,
-            @Param("state") String state,
-            @Param("organTypeId") Integer organTypeId
-    );
+    default List<Donor> searchDonors(
+            Donor.BloodType bloodType,
+            String city,
+            String state,
+            Integer organTypeId
+    ) {
+        return findAll().stream()
+                .filter(d -> Boolean.TRUE.equals(d.getIsVerified()))
+                .filter(d -> d.getConsentStatus() == Donor.ConsentStatus.APPROVED)
+                .filter(d -> bloodType == null || d.getBloodType() == bloodType)
+                .filter(d -> city == null || (d.getCity() != null && d.getCity().toLowerCase().contains(city.toLowerCase())))
+                .filter(d -> state == null || (d.getState() != null && d.getState().toLowerCase().contains(state.toLowerCase())))
+                .filter(d -> organTypeId == null || (d.getDonorOrgans() != null && d.getDonorOrgans().stream().anyMatch(doItem ->
+                        doItem.getOrganType() != null && organTypeId.equals(doItem.getOrganType().getOrganTypeId()) &&
+                        (doItem.getAvailabilityStatus() == null || doItem.getAvailabilityStatus() == DonorOrgan.AvailabilityStatus.AVAILABLE)
+                )))
+                .toList();
+    }
 
     /**
      * Find donors by organ type
      */
-    @Query("SELECT DISTINCT d FROM Donor d " +
-            "JOIN d.donorOrgans do " +
-            "WHERE do.organType.organTypeId = :organTypeId " +
-            "AND do.availabilityStatus = 'AVAILABLE'")
-    List<Donor> findByOrganType(@Param("organTypeId") Integer organTypeId);
+    default List<Donor> findByOrganType(Integer organTypeId) {
+        return findAll().stream()
+                .filter(d -> d.getDonorOrgans() != null && d.getDonorOrgans().stream().anyMatch(doItem ->
+                        doItem.getOrganType() != null && organTypeId.equals(doItem.getOrganType().getOrganTypeId()) &&
+                        doItem.getAvailabilityStatus() == DonorOrgan.AvailabilityStatus.AVAILABLE
+                ))
+                .toList();
+    }
 
     /**
      * Count verified donors

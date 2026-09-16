@@ -36,36 +36,36 @@ const Modal = ({
     <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4">
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-slate-950/70 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
 
       {/* Modal Dialog */}
-      <div className={`relative bg-slate-900 border border-slate-800 rounded-xl shadow-2xl w-full ${sizes[size]} z-10 transition-all duration-300 transform scale-100 ${className}`}>
+      <div className={`relative bg-white border border-rose-100 rounded-2xl shadow-xl w-full ${sizes[size]} z-10 transition-all duration-300 transform scale-100 ${className}`}>
         
         {/* Header */}
-        <div className="px-6 py-4 border-b border-slate-800 flex items-center justify-between">
-          <h3 className="text-lg font-bold text-slate-100">{title}</h3>
+        <div className="px-6 py-4 border-b border-rose-100 flex items-center justify-between bg-slate-50/50 rounded-t-2xl">
+          <h3 className="text-lg font-bold text-slate-800">{title}</h3>
           <button 
             onClick={onClose}
-            className="text-slate-400 hover:text-slate-100 transition-colors p-1 rounded-lg hover:bg-slate-800"
+            className="text-slate-400 hover:text-slate-700 transition-colors p-1 rounded-lg hover:bg-slate-100"
           >
             <X size={20} />
           </button>
         </div>
 
         {/* Content */}
-        <div className="px-6 py-5 max-h-[70vh] overflow-y-auto">
+        <div className="px-6 py-5 max-h-[70vh] overflow-y-auto text-slate-700">
           {children}
         </div>
 
         {/* Footer */}
         {footer !== undefined ? (
-          <div className="px-6 py-4 border-t border-slate-800 flex justify-end gap-3 bg-slate-900/50 rounded-b-xl">
+          <div className="px-6 py-4 border-t border-rose-100 flex justify-end gap-3 bg-slate-50/60 rounded-b-2xl">
             {footer}
           </div>
         ) : (
-          <div className="px-6 py-4 border-t border-slate-800 flex justify-end gap-3 bg-slate-900/50 rounded-b-xl">
+          <div className="px-6 py-4 border-t border-rose-100 flex justify-end gap-3 bg-slate-50/60 rounded-b-2xl">
             <Button variant="secondary" onClick={onClose}>Close</Button>
           </div>
         )}

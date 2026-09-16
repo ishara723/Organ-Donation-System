@@ -50,15 +50,15 @@ const Login = () => {
     <div className="flex flex-1 items-center justify-center py-12 px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-200px)]">
       <div className="w-full max-w-md space-y-8">
         
-        {/* Branding Branding */}
+        {/* Branding */}
         <div className="text-center">
-          <div className="mx-auto h-12 w-12 bg-gradient-to-br from-teal-400 to-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-teal-500/20">
+          <div className="mx-auto h-12 w-12 bg-gradient-to-br from-red-500 to-rose-500 rounded-2xl flex items-center justify-center text-white shadow-md shadow-rose-200">
             <Activity size={24} className="animate-pulse" />
           </div>
-          <h2 className="mt-6 text-3xl font-extrabold tracking-tight text-slate-100">
+          <h2 className="mt-6 text-3xl font-extrabold tracking-tight text-slate-900">
             Welcome to LifeLink
           </h2>
-          <p className="mt-2 text-sm text-slate-400">
+          <p className="mt-2 text-sm text-slate-500">
             Access your secure organ coordination workspace
           </p>
         </div>
@@ -68,7 +68,7 @@ const Login = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             
             {error && (
-              <div className="p-3.5 bg-red-500/10 border border-red-500/20 rounded-lg text-sm text-red-400 flex items-center gap-3">
+              <div className="p-3.5 bg-rose-50 border border-rose-200 rounded-xl text-sm text-rose-600 flex items-center gap-3">
                 <AlertTriangle size={18} className="flex-shrink-0" />
                 <span>{error}</span>
               </div>
@@ -98,12 +98,12 @@ const Login = () => {
               />
             </div>
 
-            <div className="flex items-center justify-between text-xs text-slate-400">
+            <div className="flex items-center justify-between text-xs text-slate-500">
               <label className="flex items-center cursor-pointer select-none">
-                <input type="checkbox" className="h-4 w-4 bg-slate-900 border-slate-700 text-teal-500 rounded focus:ring-teal-500/50" />
+                <input type="checkbox" className="h-4 w-4 bg-white border-slate-300 text-rose-600 rounded focus:ring-rose-400" />
                 <span className="ml-2">Remember me</span>
               </label>
-              <a href="#reset" className="text-teal-400 hover:underline">Forgot password?</a>
+              <a href="#reset" className="text-rose-600 hover:underline">Forgot password?</a>
             </div>
 
             <Button
@@ -117,9 +117,9 @@ const Login = () => {
 
           </form>
 
-          <div className="mt-6 text-center text-sm text-slate-400 border-t border-slate-800 pt-6">
+          <div className="mt-6 text-center text-sm text-slate-500 border-t border-rose-100 pt-6">
             New to LifeLink?{' '}
-            <Link to="/register" className="font-semibold text-teal-400 hover:underline">
+            <Link to="/register" className="font-semibold text-rose-600 hover:underline">
               Create an account
             </Link>
           </div>

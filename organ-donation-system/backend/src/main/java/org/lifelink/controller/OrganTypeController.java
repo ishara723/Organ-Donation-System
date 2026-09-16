@@ -14,7 +14,6 @@ import java.util.List;
 @RequestMapping("/organ-types")
 @RequiredArgsConstructor
 @Tag(name = "Organ Types", description = "Organ type reference data")
-@CrossOrigin(origins = "*")
 public class OrganTypeController {
 
     private final OrganTypeService organTypeService;

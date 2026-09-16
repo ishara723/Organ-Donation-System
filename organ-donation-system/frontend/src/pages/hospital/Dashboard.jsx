@@ -60,8 +60,8 @@ const HospitalDashboard = () => {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-20 gap-3">
-        <RefreshCw className="animate-spin text-teal-400" size={32} />
-        <p className="text-sm text-slate-400">Loading hospital records...</p>
+        <RefreshCw className="animate-spin text-rose-500" size={32} />
+        <p className="text-sm text-slate-600">Loading hospital records...</p>
       </div>
     );
   }
@@ -72,8 +72,8 @@ const HospitalDashboard = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-100">Hospital Portal</h1>
-          <p className="text-slate-400 text-sm">Manage recipient requests and compatibility matches.</p>
+          <h1 className="text-2xl font-bold text-slate-900">Hospital Portal</h1>
+          <p className="text-slate-600 text-sm">Manage recipient requests and compatibility matches.</p>
         </div>
         
         <div className="flex items-center gap-3">
@@ -93,29 +93,29 @@ const HospitalDashboard = () => {
       </div>
 
       {errorMsg && (
-        <div className="p-3.5 bg-red-500/10 border border-red-500/20 rounded-lg text-sm text-red-400 flex items-center gap-3">
-          <AlertTriangle size={18} className="flex-shrink-0" />
+        <div className="p-3.5 bg-rose-50 border border-rose-200 rounded-lg text-sm text-rose-700 flex items-center gap-3">
+          <AlertTriangle size={18} className="flex-shrink-0 text-rose-600" />
           <span>{errorMsg}</span>
         </div>
       )}
 
       {/* Stats Counter */}
       <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card className="p-4 border border-slate-900 bg-slate-950/20 text-center">
-          <span className="block text-3xl font-extrabold text-slate-100">{stats.total}</span>
-          <span className="text-xs text-slate-400 mt-1 block font-semibold uppercase tracking-wider">Total Requests</span>
+        <Card className="p-4 border border-rose-100 bg-white shadow-sm text-center">
+          <span className="block text-3xl font-extrabold text-slate-900">{stats.total}</span>
+          <span className="text-xs text-slate-500 mt-1 block font-semibold uppercase tracking-wider">Total Requests</span>
         </Card>
-        <Card className="p-4 border border-slate-900 bg-slate-950/20 text-center">
-          <span className="block text-3xl font-extrabold text-amber-500">{stats.pending}</span>
-          <span className="text-xs text-slate-400 mt-1 block font-semibold uppercase tracking-wider">Pending Review</span>
+        <Card className="p-4 border border-rose-100 bg-white shadow-sm text-center">
+          <span className="block text-3xl font-extrabold text-amber-600">{stats.pending}</span>
+          <span className="text-xs text-slate-500 mt-1 block font-semibold uppercase tracking-wider">Pending Review</span>
         </Card>
-        <Card className="p-4 border border-slate-900 bg-slate-950/20 text-center">
-          <span className="block text-3xl font-extrabold text-teal-400">{stats.approved}</span>
-          <span className="text-xs text-slate-400 mt-1 block font-semibold uppercase tracking-wider">Active Search</span>
+        <Card className="p-4 border border-rose-100 bg-white shadow-sm text-center">
+          <span className="block text-3xl font-extrabold text-rose-600">{stats.approved}</span>
+          <span className="text-xs text-slate-500 mt-1 block font-semibold uppercase tracking-wider">Active Search</span>
         </Card>
-        <Card className="p-4 border border-slate-900 bg-slate-950/20 text-center">
-          <span className="block text-3xl font-extrabold text-indigo-400">{stats.completed}</span>
-          <span className="text-xs text-slate-400 mt-1 block font-semibold uppercase tracking-wider">Completed</span>
+        <Card className="p-4 border border-rose-100 bg-white shadow-sm text-center">
+          <span className="block text-3xl font-extrabold text-indigo-600">{stats.completed}</span>
+          <span className="text-xs text-slate-500 mt-1 block font-semibold uppercase tracking-wider">Completed</span>
         </Card>
       </section>
 
@@ -127,26 +127,26 @@ const HospitalDashboard = () => {
           <Card 
             title="Recent Recipient Requests" 
             subtitle="Piped to active compatibility checking"
-            className="border border-slate-900"
+            className="border border-rose-100 bg-white shadow-sm"
             actions={
-              <Link to="/hospital/requests" className="text-xs text-teal-400 hover:underline font-bold">
+              <Link to="/hospital/requests" className="text-xs text-rose-600 hover:underline font-bold">
                 View All Requests
               </Link>
             }
           >
             {requests.length > 0 ? (
-              <div className="divide-y divide-slate-800/60">
+              <div className="divide-y divide-slate-100">
                 {requests.slice(0, 5).map((req) => (
                   <div key={req.requestId} className="py-4 first:pt-0 last:pb-0 flex items-center justify-between gap-4">
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="font-bold text-sm text-slate-200">Patient: {req.patientName} ({req.patientAge}y)</span>
+                        <span className="font-bold text-sm text-slate-900">Patient: {req.patientName} ({req.patientAge}y)</span>
                         <Badge variant="info">{req.patientBloodType}</Badge>
                       </div>
-                      <p className="text-xs text-slate-400">
+                      <p className="text-xs text-slate-600">
                         Requested: {req.organType?.name} &bull; Urgency: <span className="font-semibold">{req.urgencyLevel}</span>
                       </p>
-                      <p className="text-[10px] text-slate-500">Submitted: {new Date(req.createdAt).toLocaleDateString()}</p>
+                      <p className="text-[10px] text-slate-400">Submitted: {new Date(req.createdAt).toLocaleDateString()}</p>
                     </div>
 
                     <div className="flex items-center gap-3">
@@ -173,24 +173,24 @@ const HospitalDashboard = () => {
 
         {/* Dashboard Sidebar Quick links */}
         <div className="space-y-4">
-          <Card title="Quick Resources" className="border border-slate-900 h-full">
+          <Card title="Quick Resources" className="border border-rose-100 bg-white shadow-sm h-full">
             <div className="space-y-4">
-              <div className="p-4 bg-slate-950 rounded-lg border border-slate-800 text-left text-xs space-y-2">
-                <div className="flex items-center gap-2 text-teal-400 font-bold mb-1">
+              <div className="p-4 bg-slate-50 rounded-xl border border-slate-200 text-left text-xs space-y-2">
+                <div className="flex items-center gap-2 text-rose-600 font-bold mb-1">
                   <Activity size={14} />
                   Matching Algorithm Details
                 </div>
-                <p className="text-slate-400 leading-normal">
+                <p className="text-slate-600 leading-normal">
                   Our system checks for blood compatibility:
                 </p>
-                <ul className="list-disc list-inside text-slate-400 space-y-1 pl-1">
+                <ul className="list-disc list-inside text-slate-600 space-y-1 pl-1">
                   <li>O- is universal donor.</li>
                   <li>AB+ is universal recipient.</li>
                   <li>Matches require active donor consent and admin approval.</li>
                 </ul>
               </div>
 
-              <div className="h-px bg-slate-900"></div>
+              <div className="h-px bg-rose-100"></div>
 
               <div className="space-y-2.5">
                 <Link to="/hospital/requests?create=true" className="block">
@@ -201,7 +201,7 @@ const HospitalDashboard = () => {
                 </Link>
                 
                 <Link to="/hospital/search" className="block">
-                  <Button variant="outline" className="w-full text-xs font-bold flex items-center justify-center gap-1.5 py-2.5 border-slate-700 hover:border-slate-500">
+                  <Button variant="outline" className="w-full text-xs font-bold flex items-center justify-center gap-1.5 py-2.5 border-slate-300 hover:border-slate-400">
                     <Search size={14} />
                     Open Compatibility Database
                   </Button>

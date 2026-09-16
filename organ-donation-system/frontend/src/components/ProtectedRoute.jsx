@@ -8,9 +8,9 @@ const ProtectedRoute = ({ children, allowedRoles = [] }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-[#0b0f19] text-slate-100 gap-3">
-        <RefreshCw className="animate-spin text-teal-400" size={32} />
-        <p className="text-sm text-slate-400">Verifying security credentials...</p>
+      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 text-slate-900 gap-3">
+        <RefreshCw className="animate-spin text-rose-500" size={32} />
+        <p className="text-sm text-slate-600">Verifying security credentials...</p>
       </div>
     );
   }

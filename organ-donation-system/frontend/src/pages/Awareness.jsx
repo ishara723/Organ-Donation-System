@@ -58,34 +58,34 @@ const Awareness = () => {
       
       {/* Header */}
       <div className="space-y-2 text-center">
-        <h1 className="text-3xl md:text-4xl font-extrabold text-slate-100">Education & FAQs</h1>
-        <p className="text-slate-400 max-w-xl mx-auto text-sm">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900">Education & FAQs</h1>
+        <p className="text-slate-600 max-w-xl mx-auto text-sm">
           Get answers to common questions and test your general eligibility.
         </p>
       </div>
 
       {/* Accordion FAQ section */}
       <section className="space-y-4 text-left">
-        <h3 className="text-xl font-bold text-slate-200">Frequently Asked Questions</h3>
+        <h3 className="text-xl font-bold text-slate-900">Frequently Asked Questions</h3>
         <div className="space-y-3">
           {faqs.map((faq, idx) => (
             <div 
               key={idx} 
-              className="glass-panel border border-slate-800 rounded-lg overflow-hidden transition-all duration-200"
+              className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm transition-all duration-200"
             >
               <button
                 onClick={() => toggleFaq(idx)}
-                className="w-full px-5 py-4 flex items-center justify-between text-slate-200 hover:text-teal-400 font-semibold text-sm sm:text-base focus:outline-none"
+                className="w-full px-5 py-4 flex items-center justify-between text-slate-800 hover:text-rose-600 font-semibold text-sm sm:text-base focus:outline-none"
               >
                 <span className="flex items-center gap-2">
-                  <HelpCircle size={18} className="text-teal-500 flex-shrink-0" />
+                  <HelpCircle size={18} className="text-rose-500 flex-shrink-0" />
                   {faq.q}
                 </span>
-                {openFaq === idx ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                {openFaq === idx ? <ChevronUp size={18} className="text-slate-500" /> : <ChevronDown size={18} className="text-slate-500" />}
               </button>
               
               {openFaq === idx && (
-                <div className="px-5 pb-4 text-slate-400 text-sm leading-relaxed border-t border-slate-900 pt-3">
+                <div className="px-5 pb-4 text-slate-600 text-sm leading-relaxed border-t border-slate-100 pt-3 bg-slate-50/50">
                   {faq.a}
                 </div>
               )}
@@ -96,16 +96,16 @@ const Awareness = () => {
 
       {/* Myth vs Fact */}
       <section className="space-y-6 text-left">
-        <h3 className="text-xl font-bold text-slate-200">Myths vs. Facts</h3>
+        <h3 className="text-xl font-bold text-slate-900">Myths vs. Facts</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {myths.map((myth, idx) => (
-            <Card key={idx} className="border border-slate-900 bg-slate-950/40">
+            <Card key={idx} className="border border-rose-100 bg-white shadow-sm hover:shadow-md transition-shadow">
               <div className="space-y-2.5">
-                <span className="text-xs font-semibold text-red-400 uppercase tracking-wider block">Common Myth</span>
-                <h4 className="text-sm font-bold text-slate-200">{myth.m}</h4>
-                <div className="h-px bg-slate-900 my-2"></div>
-                <span className="text-xs font-semibold text-teal-400 uppercase tracking-wider block">Medical Fact</span>
-                <p className="text-xs text-slate-400 leading-relaxed">{myth.f}</p>
+                <span className="text-xs font-bold text-rose-600 uppercase tracking-wider block">Common Myth</span>
+                <h4 className="text-sm font-bold text-slate-900">{myth.m}</h4>
+                <div className="h-px bg-rose-100 my-2"></div>
+                <span className="text-xs font-bold text-rose-500 uppercase tracking-wider block">Medical Fact</span>
+                <p className="text-xs text-slate-600 leading-relaxed">{myth.f}</p>
               </div>
             </Card>
           ))}
@@ -114,52 +114,52 @@ const Awareness = () => {
 
       {/* Interactive Eligibility Checklist */}
       <section className="space-y-6 text-left">
-        <h3 className="text-xl font-bold text-slate-200">Interactive Eligibility Checklist</h3>
-        <Card className="border border-slate-900 bg-gradient-to-r from-slate-950 to-indigo-950/15">
+        <h3 className="text-xl font-bold text-slate-900">Interactive Eligibility Checklist</h3>
+        <Card className="border border-rose-100 bg-white shadow-sm">
           <div className="space-y-4">
-            <p className="text-xs text-slate-400 leading-normal">
+            <p className="text-xs text-slate-600 leading-normal">
               Answer these questions to perform a preliminary evaluation of your donor eligibility. Note: Final medical evaluations are always done on-site by clinical staff.
             </p>
 
             <div className="space-y-3">
-              <label className="flex items-center gap-3 p-3 bg-slate-900/50 rounded-lg border border-slate-800 cursor-pointer">
+              <label className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer hover:bg-rose-50/30 transition-colors">
                 <input
                   type="checkbox"
                   checked={checklist.age}
                   onChange={(e) => setChecklist({ ...checklist, age: e.target.checked })}
-                  className="rounded border-slate-700 bg-slate-900 text-teal-600 focus:ring-teal-500/50 h-4.5 w-4.5"
+                  className="rounded border-slate-300 text-rose-600 focus:ring-rose-500/50 h-4.5 w-4.5"
                 />
-                <span className="text-xs text-slate-300">I am at least 18 years old (or have parental/guardian consent if younger).</span>
+                <span className="text-xs text-slate-700">I am at least 18 years old (or have parental/guardian consent if younger).</span>
               </label>
 
-              <label className="flex items-center gap-3 p-3 bg-slate-900/50 rounded-lg border border-slate-800 cursor-pointer">
+              <label className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer hover:bg-rose-50/30 transition-colors">
                 <input
                   type="checkbox"
                   checked={checklist.disease}
                   onChange={(e) => setChecklist({ ...checklist, disease: e.target.checked })}
-                  className="rounded border-slate-700 bg-slate-900 text-teal-600 focus:ring-teal-500/50 h-4.5 w-4.5"
+                  className="rounded border-slate-300 text-rose-600 focus:ring-rose-500/50 h-4.5 w-4.5"
                 />
-                <span className="text-xs text-slate-300">I currently carry active communicable diseases (e.g., active HIV, active systemic infections).</span>
+                <span className="text-xs text-slate-700">I currently carry active communicable diseases (e.g., active HIV, active systemic infections).</span>
               </label>
 
-              <label className="flex items-center gap-3 p-3 bg-slate-900/50 rounded-lg border border-slate-800 cursor-pointer">
+              <label className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer hover:bg-rose-50/30 transition-colors">
                 <input
                   type="checkbox"
                   checked={checklist.consent}
                   onChange={(e) => setChecklist({ ...checklist, consent: e.target.checked })}
-                  className="rounded border-slate-700 bg-slate-900 text-teal-600 focus:ring-teal-500/50 h-4.5 w-4.5"
+                  className="rounded border-slate-300 text-rose-600 focus:ring-rose-500/50 h-4.5 w-4.5"
                 />
-                <span className="text-xs text-slate-300">I am willing to explicitly pledge specific organs and verify my profile settings.</span>
+                <span className="text-xs text-slate-700">I am willing to explicitly pledge specific organs and verify my profile settings.</span>
               </label>
 
-              <label className="flex items-center gap-3 p-3 bg-slate-900/50 rounded-lg border border-slate-800 cursor-pointer">
+              <label className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg border border-slate-200 cursor-pointer hover:bg-rose-50/30 transition-colors">
                 <input
                   type="checkbox"
                   checked={checklist.health}
                   onChange={(e) => setChecklist({ ...checklist, health: e.target.checked })}
-                  className="rounded border-slate-700 bg-slate-900 text-teal-600 focus:ring-teal-500/50 h-4.5 w-4.5"
+                  className="rounded border-slate-300 text-rose-600 focus:ring-rose-500/50 h-4.5 w-4.5"
                 />
-                <span className="text-xs text-slate-300">I understand that final organ medical viability is assessed by clinical boards at time of care.</span>
+                <span className="text-xs text-slate-700">I understand that final organ medical viability is assessed by clinical boards at time of care.</span>
               </label>
             </div>
 
@@ -171,17 +171,17 @@ const Awareness = () => {
               {eligibilityResult && (
                 <div className={`px-4 py-2.5 rounded-lg border text-xs font-semibold flex items-center gap-2 ${
                   eligibilityResult === 'eligible'
-                    ? 'bg-teal-500/10 text-teal-400 border-teal-500/20'
-                    : 'bg-red-500/10 text-red-400 border-red-500/20'
+                    ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                    : 'bg-rose-50 text-rose-700 border-rose-200'
                 }`}>
                   {eligibilityResult === 'eligible' ? (
                     <>
-                      <Award size={16} />
+                      <Award size={16} className="text-emerald-600" />
                       <span>Result: You meet standard registry requirements. Please click Register to sign up.</span>
                     </>
                   ) : (
                     <>
-                      <ShieldAlert size={16} />
+                      <ShieldAlert size={16} className="text-rose-600" />
                       <span>Result: Please check the requirements. Organ donations might have medical restrictions.</span>
                     </>
                   )}

@@ -204,8 +204,8 @@ const HospitalRequests = () => {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-20 gap-3">
-        <RefreshCw className="animate-spin text-teal-400" size={32} />
-        <p className="text-sm text-slate-400">Loading requests queue...</p>
+        <RefreshCw className="animate-spin text-rose-500" size={32} />
+        <p className="text-sm text-slate-600">Loading requests queue...</p>
       </div>
     );
   }
@@ -216,8 +216,8 @@ const HospitalRequests = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-100">Patient Organ Requests</h1>
-          <p className="text-slate-400 text-sm">Add and monitor transplant matching queues.</p>
+          <h1 className="text-2xl font-bold text-slate-900">Patient Organ Requests</h1>
+          <p className="text-slate-600 text-sm">Add and monitor transplant matching queues.</p>
         </div>
         
         <Button variant="primary" onClick={handleOpenModal} className="text-xs font-bold flex items-center gap-1.5 self-start">
@@ -227,26 +227,26 @@ const HospitalRequests = () => {
       </div>
 
       {successMsg && (
-        <div className="p-3.5 bg-teal-500/10 border border-teal-500/20 rounded-lg text-sm text-teal-400 flex items-center gap-3">
-          <CheckCircle size={18} className="flex-shrink-0" />
+        <div className="p-3.5 bg-emerald-50 border border-emerald-200 rounded-lg text-sm text-emerald-700 flex items-center gap-3">
+          <CheckCircle size={18} className="flex-shrink-0 text-emerald-600" />
           <span>{successMsg}</span>
         </div>
       )}
 
       {errorMsg && (
-        <div className="p-3.5 bg-red-500/10 border border-red-500/20 rounded-lg text-sm text-red-400 flex items-center gap-3">
-          <AlertTriangle size={18} className="flex-shrink-0" />
+        <div className="p-3.5 bg-rose-50 border border-rose-200 rounded-lg text-sm text-rose-700 flex items-center gap-3">
+          <AlertTriangle size={18} className="flex-shrink-0 text-rose-600" />
           <span>{errorMsg}</span>
         </div>
       )}
 
       {/* Requests table card */}
-      <Card title="Transplant Waiting List" subtitle="Logged cases under synchronization">
+      <Card title="Transplant Waiting List" subtitle="Logged cases under synchronization" className="border border-rose-100 bg-white shadow-sm">
         {requests.length > 0 ? (
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-slate-800 text-sm">
+            <table className="min-w-full divide-y divide-slate-200 text-sm">
               <thead>
-                <tr className="text-slate-400 text-xs font-bold uppercase tracking-wider text-left">
+                <tr className="text-slate-500 text-xs font-bold uppercase tracking-wider text-left">
                   <th className="pb-3 pt-2">Patient Code</th>
                   <th className="pb-3 pt-2">Organ Type</th>
                   <th className="pb-3 pt-2">Blood Type</th>
@@ -256,10 +256,10 @@ const HospitalRequests = () => {
                   <th className="pb-3 pt-2 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/50 text-slate-200">
+              <tbody className="divide-y divide-slate-100 text-slate-800">
                 {requests.map((req) => (
-                  <tr key={req.requestId} className="hover:bg-slate-900/30 transition-colors">
-                    <td className="py-3.5 font-semibold">{req.patientName} ({req.patientAge}y)</td>
+                  <tr key={req.requestId} className="hover:bg-rose-50/30 transition-colors">
+                    <td className="py-3.5 font-semibold text-slate-900">{req.patientName} ({req.patientAge}y)</td>
                     <td className="py-3.5">{req.organType?.name}</td>
                     <td className="py-3.5">
                       <Badge variant="secondary">{req.patientBloodType}</Badge>
@@ -269,7 +269,7 @@ const HospitalRequests = () => {
                         {req.urgencyLevel}
                       </Badge>
                     </td>
-                    <td className="py-3.5 font-bold text-teal-400">{req.priority || 0}</td>
+                    <td className="py-3.5 font-bold text-rose-600">{req.priority || 0}</td>
                     <td className="py-3.5">
                       <Badge>{req.status}</Badge>
                     </td>
@@ -288,7 +288,7 @@ const HospitalRequests = () => {
                           <Button
                             variant="ghost"
                             onClick={() => handleCancelRequest(req.requestId)}
-                            className="text-red-400 hover:text-red-300 hover:bg-red-500/10 p-1.5 rounded-lg"
+                            className="text-rose-600 hover:text-rose-700 hover:bg-rose-50 p-1.5 rounded-lg"
                             title="Cancel Request"
                           >
                             <Trash2 size={15} />
@@ -328,7 +328,7 @@ const HospitalRequests = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           
           {errors.submit && (
-            <div className="p-3 bg-red-500/10 border border-red-500/20 text-red-400 text-xs rounded-lg">
+            <div className="p-3 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-lg">
               {errors.submit}
             </div>
           )}

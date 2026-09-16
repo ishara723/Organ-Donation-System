@@ -23,29 +23,30 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-40 w-full bg-slate-950/80 backdrop-blur-md border-b border-slate-900 px-6 py-4">
+    <nav className="sticky top-0 z-40 w-full bg-white/90 backdrop-blur-md border-b border-rose-100 shadow-sm px-6 py-3.5">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         
-        {/* Brand Brand logo */}
-        <Link to="/" className="flex items-center gap-2 group">
-          <div className="bg-gradient-to-br from-teal-400 to-indigo-600 p-2 rounded-lg text-white shadow-md shadow-teal-500/25 group-hover:scale-105 transition-transform duration-200">
-            <Activity size={20} className="animate-pulse" />
+        {/* Brand logo */}
+        <Link to="/" className="flex items-center gap-2.5 group">
+          <div className="relative bg-gradient-to-br from-red-500 to-rose-500 p-2 rounded-xl text-white shadow-md shadow-rose-200 group-hover:scale-105 transition-transform duration-200 flex items-center justify-center">
+            <span className="animate-pulse-ring absolute h-7 w-7 rounded-xl bg-rose-400/40"></span>
+            <Activity size={20} className="relative z-10 animate-pulse text-white" />
           </div>
-          <span className="text-xl font-bold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-indigo-400">
+          <span className="text-xl font-extrabold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-rose-500">
             LifeLink
           </span>
         </Link>
 
         {/* Mid Navigation */}
         <div className="hidden md:flex items-center gap-8">
-          <Link to="/about" className="text-sm font-medium text-slate-300 hover:text-teal-400 transition-colors">
+          <Link to="/about" className="text-sm font-semibold text-slate-600 hover:text-rose-600 transition-colors">
             About Donation
           </Link>
-          <Link to="/awareness" className="text-sm font-medium text-slate-300 hover:text-teal-400 transition-colors">
+          <Link to="/awareness" className="text-sm font-semibold text-slate-600 hover:text-rose-600 transition-colors">
             Education & FAQs
           </Link>
           {isAuthenticated && (
-            <Link to={getDashboardPath()} className="text-sm font-medium text-slate-300 hover:text-teal-400 transition-colors">
+            <Link to={getDashboardPath()} className="text-sm font-semibold text-slate-600 hover:text-rose-600 transition-colors">
               My Dashboard
             </Link>
           )}
@@ -56,14 +57,14 @@ const Navbar = () => {
           {isAuthenticated ? (
             <div className="flex items-center gap-3.5">
               <div className="hidden sm:flex flex-col items-end">
-                <span className="text-sm font-semibold text-slate-200">{user.email}</span>
+                <span className="text-sm font-semibold text-slate-800">{user.email}</span>
                 <Badge variant="info" className="mt-0.5">{user.role}</Badge>
               </div>
-              <div className="h-9 w-px bg-slate-800 hidden sm:block"></div>
+              <div className="h-8 w-px bg-slate-200 hidden sm:block"></div>
               <Button
                 variant="ghost"
                 onClick={handleLogout}
-                className="px-2.5 py-2 text-red-400 hover:text-red-300 hover:bg-red-500/10"
+                className="px-2.5 py-2 text-rose-600 hover:text-rose-700 hover:bg-rose-50"
               >
                 <LogOut size={18} className="mr-1.5" />
                 <span className="hidden sm:inline">Logout</span>
@@ -72,7 +73,7 @@ const Navbar = () => {
           ) : (
             <div className="flex items-center gap-3">
               <Link to="/login">
-                <Button variant="ghost" className="text-slate-300 hover:text-slate-100">
+                <Button variant="ghost" className="text-slate-600 hover:text-rose-600 hover:bg-rose-50">
                   <LogIn size={16} className="mr-1.5" />
                   Sign In
                 </Button>

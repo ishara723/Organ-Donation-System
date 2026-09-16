@@ -78,8 +78,8 @@ const AdminDonors = () => {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-20 gap-3">
-        <RefreshCw className="animate-spin text-teal-400" size={32} />
-        <p className="text-sm text-slate-400">Loading donor database...</p>
+        <RefreshCw className="animate-spin text-rose-500" size={32} />
+        <p className="text-sm text-slate-600">Loading donor database...</p>
       </div>
     );
   }
@@ -90,16 +90,16 @@ const AdminDonors = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-100">Donor Verifications</h1>
-          <p className="text-slate-400 text-sm">Review legal consent and authorize donor accounts.</p>
+          <h1 className="text-2xl font-bold text-slate-900">Donor Verifications</h1>
+          <p className="text-slate-600 text-sm">Review legal consent and authorize donor accounts.</p>
         </div>
 
         {/* Filters */}
-        <div className="flex bg-slate-950 p-1 rounded-lg border border-slate-800 self-start">
+        <div className="flex bg-slate-100 p-1 rounded-lg border border-slate-200 self-start">
           <button
             onClick={() => setFilterPending(false)}
             className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all ${
-              !filterPending ? 'bg-slate-800 text-slate-100 shadow' : 'text-slate-400 hover:text-slate-200'
+              !filterPending ? 'bg-white text-slate-900 shadow-sm border border-slate-200' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             All Donors
@@ -107,7 +107,7 @@ const AdminDonors = () => {
           <button
             onClick={() => setFilterPending(true)}
             className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all ${
-              filterPending ? 'bg-slate-800 text-slate-100 shadow' : 'text-slate-400 hover:text-slate-200'
+              filterPending ? 'bg-white text-slate-900 shadow-sm border border-slate-200' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             Pending Verification
@@ -116,25 +116,25 @@ const AdminDonors = () => {
       </div>
 
       {successMsg && (
-        <div className="p-3.5 bg-teal-500/10 border border-teal-500/20 rounded-lg text-sm text-teal-400 flex items-center gap-3">
-          <CheckCircle size={18} className="flex-shrink-0" />
+        <div className="p-3.5 bg-emerald-50 border border-emerald-200 rounded-lg text-sm text-emerald-700 flex items-center gap-3">
+          <CheckCircle size={18} className="flex-shrink-0 text-emerald-600" />
           <span>{successMsg}</span>
         </div>
       )}
 
       {errorMsg && (
-        <div className="p-3.5 bg-red-500/10 border border-red-500/20 rounded-lg text-sm text-red-400 flex items-center gap-3">
-          <AlertTriangle size={18} className="flex-shrink-0" />
+        <div className="p-3.5 bg-rose-50 border border-rose-200 rounded-lg text-sm text-rose-700 flex items-center gap-3">
+          <AlertTriangle size={18} className="flex-shrink-0 text-rose-600" />
           <span>{errorMsg}</span>
         </div>
       )}
 
-      <Card title="Registry Roster" subtitle="Verify and toggle legal consent permissions">
+      <Card title="Registry Roster" subtitle="Verify and toggle legal consent permissions" className="border border-rose-100 bg-white shadow-sm">
         {donors.length > 0 ? (
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-slate-800 text-sm">
+            <table className="min-w-full divide-y divide-slate-200 text-sm">
               <thead>
-                <tr className="text-slate-400 text-xs font-bold uppercase tracking-wider text-left">
+                <tr className="text-slate-500 text-xs font-bold uppercase tracking-wider text-left">
                   <th className="pb-3 pt-2">ID</th>
                   <th className="pb-3 pt-2">Full Name</th>
                   <th className="pb-3 pt-2">Blood Type</th>
@@ -143,11 +143,11 @@ const AdminDonors = () => {
                   <th className="pb-3 pt-2 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/50 text-slate-200">
+              <tbody className="divide-y divide-slate-100 text-slate-800">
                 {donors.map((donor) => (
-                  <tr key={donor.donorId} className="hover:bg-slate-900/30 transition-colors">
-                    <td className="py-3.5 font-mono text-slate-500 text-xs">#{donor.donorId}</td>
-                    <td className="py-3.5 font-semibold">{donor.fullName}</td>
+                  <tr key={donor.donorId} className="hover:bg-rose-50/30 transition-colors">
+                    <td className="py-3.5 font-mono text-slate-400 text-xs">#{donor.donorId}</td>
+                    <td className="py-3.5 font-semibold text-slate-900">{donor.fullName}</td>
                     <td className="py-3.5">
                       <Badge variant="secondary">{donor.bloodType}</Badge>
                     </td>
@@ -156,12 +156,12 @@ const AdminDonors = () => {
                     </td>
                     <td className="py-3.5">
                       {donor.isVerified ? (
-                        <span className="flex items-center gap-1 text-xs text-teal-400 font-medium">
-                          <ShieldCheck size={14} /> Verified
+                        <span className="flex items-center gap-1 text-xs text-emerald-700 font-medium">
+                          <ShieldCheck size={14} className="text-emerald-600" /> Verified
                         </span>
                       ) : (
-                        <span className="flex items-center gap-1 text-xs text-amber-500 font-medium">
-                          <ShieldAlert size={14} /> Pending
+                        <span className="flex items-center gap-1 text-xs text-amber-700 font-medium">
+                          <ShieldAlert size={14} className="text-amber-600" /> Pending
                         </span>
                       )}
                     </td>
@@ -170,7 +170,7 @@ const AdminDonors = () => {
                         <Button 
                           variant="ghost" 
                           onClick={() => openDetails(donor)}
-                          className="hover:bg-slate-800 p-1.5 rounded-lg"
+                          className="hover:bg-slate-100 p-1.5 rounded-lg text-slate-600"
                         >
                           <Eye size={15} />
                         </Button>
@@ -178,7 +178,7 @@ const AdminDonors = () => {
                           <Button 
                             variant="outline" 
                             onClick={() => handleVerify(donor.donorId, true)}
-                            className="text-[10px] py-1 px-2 text-teal-400 border-teal-500/30 hover:bg-teal-500/10"
+                            className="text-[10px] py-1 px-2 text-rose-600 border-rose-200 hover:bg-rose-50"
                           >
                             Verify
                           </Button>
@@ -186,7 +186,7 @@ const AdminDonors = () => {
                           <Button 
                             variant="ghost" 
                             onClick={() => handleVerify(donor.donorId, false)}
-                            className="text-[10px] py-1 px-2 text-slate-400 hover:text-slate-200"
+                            className="text-[10px] py-1 px-2 text-slate-500 hover:text-slate-800"
                           >
                             Revoke
                           </Button>
@@ -219,7 +219,7 @@ const AdminDonors = () => {
                   variant="primary" 
                   onClick={() => handleVerify(selectedDonor.donorId, true)}
                   loading={verifying}
-                  className="bg-teal-600 hover:bg-teal-500"
+                  className="bg-rose-600 hover:bg-rose-700 text-white"
                 >
                   <Check size={16} className="mr-1" />
                   Approve Verification
@@ -242,17 +242,17 @@ const AdminDonors = () => {
         }
       >
         {selectedDonor && (
-          <div className="space-y-6 text-sm text-slate-300">
+          <div className="space-y-6 text-sm text-slate-700">
             
             {/* Grid metrics */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-slate-950 p-4 rounded-xl border border-slate-800">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200">
               <div>
                 <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider block">Full Name</span>
-                <span className="font-semibold text-slate-200">{selectedDonor.fullName}</span>
+                <span className="font-semibold text-slate-900">{selectedDonor.fullName}</span>
               </div>
               <div>
                 <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider block">DOB (Age)</span>
-                <span className="font-semibold text-slate-200">
+                <span className="font-semibold text-slate-900">
                   {selectedDonor.dateOfBirth} ({selectedDonor.getAge || new Date().getFullYear() - new Date(selectedDonor.dateOfBirth).getFullYear()}y)
                 </span>
               </div>
@@ -269,44 +269,44 @@ const AdminDonors = () => {
             {/* Contact details */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2.5">
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Contact Details</h4>
-                <div className="space-y-1.5">
-                  <div className="flex items-center gap-2"><Phone size={14} className="text-teal-400" /> {selectedDonor.phone}</div>
+                <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider">Contact Details</h4>
+                <div className="space-y-1.5 text-slate-700">
+                  <div className="flex items-center gap-2"><Phone size={14} className="text-rose-500" /> {selectedDonor.phone}</div>
                   <div className="flex items-start gap-2">
-                    <MapPin size={14} className="text-teal-400 mt-0.5" />
+                    <MapPin size={14} className="text-rose-500 mt-0.5" />
                     <span>{selectedDonor.address}, {selectedDonor.city}, {selectedDonor.state}, {selectedDonor.country}</span>
                   </div>
                 </div>
               </div>
 
               <div className="space-y-2">
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Emergency Reference</h4>
-                <p className="p-3 bg-slate-950 rounded-lg border border-slate-800 text-xs">
+                <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider">Emergency Reference</h4>
+                <p className="p-3 bg-slate-50 rounded-lg border border-slate-200 text-xs text-slate-700">
                   {selectedDonor.emergencyContact || 'No emergency contact registered.'}
                 </p>
               </div>
             </div>
 
-            <div className="h-px bg-slate-800"></div>
+            <div className="h-px bg-slate-200"></div>
 
             {/* Medical notes and organs */}
             <div className="space-y-4">
               <div className="space-y-1.5">
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+                <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
                   <ClipboardList size={14} /> Medical History
                 </h4>
-                <p className="p-3 bg-slate-950 rounded-lg border border-slate-800 text-xs leading-normal">
+                <p className="p-3 bg-slate-50 rounded-lg border border-slate-200 text-xs leading-normal text-slate-700">
                   {selectedDonor.medicalHistory || 'No special medical conditions reported.'}
                 </p>
               </div>
 
               <div className="space-y-2">
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <Heart size={14} /> Pledged Organs
+                <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+                  <Heart size={14} className="text-rose-500" /> Pledged Organs
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {selectedDonor.donorOrgans?.map((o) => (
-                    <span key={o.donorOrganId} className="px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg text-xs text-slate-200">
+                    <span key={o.donorOrganId} className="px-3 py-1.5 bg-rose-50/60 border border-rose-100 rounded-lg text-xs font-medium text-slate-800">
                       {o.organType?.name}
                     </span>
                   ))}

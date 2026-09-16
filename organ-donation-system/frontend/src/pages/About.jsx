@@ -17,8 +17,8 @@ const About = () => {
       
       {/* Header */}
       <div className="space-y-2 text-center">
-        <h1 className="text-3xl md:text-4xl font-extrabold text-slate-100">About Organ Donation</h1>
-        <p className="text-slate-400 max-w-xl mx-auto text-sm">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900">About Organ Donation</h1>
+        <p className="text-slate-500 max-w-xl mx-auto text-sm">
           Understanding the massive social and medical impact of donor registrations.
         </p>
       </div>
@@ -26,37 +26,37 @@ const About = () => {
       {/* Main Info */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div className="space-y-4 text-left">
-          <h2 className="text-xl font-bold text-teal-400">Why register as a donor?</h2>
-          <p className="text-slate-300 text-sm leading-relaxed">
+          <h2 className="text-xl font-bold text-rose-600">Why register as a donor?</h2>
+          <p className="text-slate-600 text-sm leading-relaxed">
             One single organ donor can save up to eight lives and improve the quality of life for dozens more through tissue and cornea donations. Despite advanced medical technologies, thousands of patients remain on active waiting lists for years, and many lose their lives due to a critical shortage of compatible donor organs.
           </p>
-          <p className="text-slate-300 text-sm leading-relaxed">
+          <p className="text-slate-600 text-sm leading-relaxed">
             LifeLink simplifies this registry process by capturing consent explicitly, logging structured medical details, and allowing clinics to search and filter compatible donors instantly based on blood types and medical constraints.
           </p>
         </div>
         
         <div className="space-y-4">
-          <Card className="border border-slate-900 text-left bg-gradient-to-br from-slate-950 to-indigo-950/20">
+          <Card className="text-left bg-gradient-to-br from-white to-rose-50/40">
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <div className="mt-1 bg-teal-500/10 text-teal-400 p-1.5 rounded-lg"><Clock size={16} /></div>
+                <div className="mt-1 bg-rose-50 text-rose-600 p-2 rounded-xl border border-rose-100"><Clock size={16} /></div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-200">Time-Critical Pipeline</h4>
-                  <p className="text-xs text-slate-400">Organs have a limited viability window (e.g., heart is 4-6 hours, kidneys are 24-36 hours) making fast coordination essential.</p>
+                  <h4 className="text-sm font-bold text-slate-800">Time-Critical Pipeline</h4>
+                  <p className="text-xs text-slate-500">Organs have a limited viability window (e.g., heart is 4-6 hours, kidneys are 24-36 hours) making fast coordination essential.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="mt-1 bg-indigo-500/10 text-indigo-400 p-1.5 rounded-lg"><ShieldCheck size={16} /></div>
+                <div className="mt-1 bg-rose-50 text-rose-600 p-2 rounded-xl border border-rose-100"><ShieldCheck size={16} /></div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-200">GDPR & HIPAA Compliance</h4>
-                  <p className="text-xs text-slate-400">Medical profiles are locked behind secure JWT auth, ensuring donor anonymity until a match is approved.</p>
+                  <h4 className="text-sm font-bold text-slate-800">GDPR & HIPAA Compliance</h4>
+                  <p className="text-xs text-slate-500">Medical profiles are locked behind secure JWT auth, ensuring donor anonymity until a match is approved.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="mt-1 bg-emerald-500/10 text-emerald-400 p-1.5 rounded-lg"><ClipboardCheck size={16} /></div>
+                <div className="mt-1 bg-rose-50 text-rose-600 p-2 rounded-xl border border-rose-100"><ClipboardCheck size={16} /></div>
                 <div>
-                  <h4 className="text-sm font-bold text-slate-200">Explicit Consent Tracking</h4>
-                  <p className="text-xs text-slate-400">Donors can update or revoke their consent status at any time, giving them complete sovereignty over their data.</p>
+                  <h4 className="text-sm font-bold text-slate-800">Explicit Consent Tracking</h4>
+                  <p className="text-xs text-slate-500">Donors can update or revoke their consent status at any time, giving them complete sovereignty over their data.</p>
                 </div>
               </div>
             </div>
@@ -66,15 +66,15 @@ const About = () => {
 
       {/* Transplantable Organs List */}
       <section className="space-y-6">
-        <h3 className="text-2xl font-bold text-slate-100 text-left">Transplantable Organs</h3>
+        <h3 className="text-2xl font-bold text-slate-900 text-left">Transplantable Organs</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {organsList.map((organ) => (
-            <Card key={organ.name} className="border border-slate-900 text-left h-full" hoverable>
-              <div className="flex items-center gap-2 mb-2 text-teal-400">
+            <Card key={organ.name} className="text-left h-full" hoverable>
+              <div className="flex items-center gap-2 mb-2 text-rose-500">
                 <Heart size={16} className="fill-current" />
-                <h4 className="font-bold text-slate-200">{organ.name}</h4>
+                <h4 className="font-bold text-slate-800">{organ.name}</h4>
               </div>
-              <p className="text-xs text-slate-400 leading-relaxed">{organ.desc}</p>
+              <p className="text-xs text-slate-500 leading-relaxed">{organ.desc}</p>
             </Card>
           ))}
         </div>

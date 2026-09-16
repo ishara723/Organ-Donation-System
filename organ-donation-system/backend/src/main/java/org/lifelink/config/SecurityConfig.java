@@ -86,12 +86,8 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // Allow frontend origins
-        configuration.setAllowedOrigins(Arrays.asList(
-                "http://localhost:5173",  // Vite dev server
-                "http://localhost:3000",  // React dev server
-                "http://localhost:4200"   // Angular dev server
-        ));
+        // Allow frontend origins via pattern matching
+        configuration.setAllowedOriginPatterns(List.of("*"));
 
         // Allow HTTP methods
         configuration.setAllowedMethods(Arrays.asList(

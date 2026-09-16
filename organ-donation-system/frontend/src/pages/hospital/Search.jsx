@@ -157,15 +157,15 @@ const HospitalSearch = () => {
       
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-slate-100">Donor Compatibility Search</h1>
-        <p className="text-slate-400 text-sm">Query anonymized donor records and run compatibility checks.</p>
+        <h1 className="text-2xl font-bold text-slate-900">Donor Compatibility Search</h1>
+        <p className="text-slate-600 text-sm">Query anonymized donor records and run compatibility checks.</p>
       </div>
 
       {activeRequestId && (
-        <section className="bg-gradient-to-r from-teal-500/10 to-indigo-500/10 p-4 rounded-xl border border-teal-500/20 flex items-center justify-between flex-wrap gap-4">
+        <section className="bg-gradient-to-r from-rose-50 to-rose-100/50 p-4 rounded-xl border border-rose-200 flex items-center justify-between flex-wrap gap-4">
           <div>
-            <h4 className="text-xs font-bold text-teal-400 uppercase tracking-wider">Active Patient Request Context</h4>
-            <span className="text-sm font-semibold text-slate-200 block mt-1">
+            <h4 className="text-xs font-bold text-rose-600 uppercase tracking-wider">Active Patient Request Context</h4>
+            <span className="text-sm font-semibold text-slate-800 block mt-1">
               Recipient Blood Type: <Badge variant="secondary">{activeRecipientBlood}</Badge> &bull; Request ID: #{activeRequestId}
             </span>
           </div>
@@ -176,7 +176,7 @@ const HospitalSearch = () => {
               setFilters({ bloodType: '', organTypeId: '', city: '', state: '' });
               setDonors([]);
             }}
-            className="text-xs font-semibold hover:bg-slate-900/60"
+            className="text-xs font-semibold text-slate-700 hover:bg-rose-100/60"
           >
             Clear Context
           </Button>
@@ -184,14 +184,14 @@ const HospitalSearch = () => {
       )}
 
       {errorMsg && (
-        <div className="p-3.5 bg-red-500/10 border border-red-500/20 rounded-lg text-sm text-red-400 flex items-center gap-3">
-          <AlertTriangle size={18} className="flex-shrink-0" />
+        <div className="p-3.5 bg-rose-50 border border-rose-200 rounded-lg text-sm text-rose-700 flex items-center gap-3">
+          <AlertTriangle size={18} className="flex-shrink-0 text-rose-600" />
           <span>{errorMsg}</span>
         </div>
       )}
 
       {/* Filters Search Form */}
-      <Card title="Query Filters" className="border border-slate-900">
+      <Card title="Query Filters" className="border border-rose-100 bg-white shadow-sm">
         <form onSubmit={handleSearch} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
           <Input
             label="Blood Type"
@@ -240,7 +240,7 @@ const HospitalSearch = () => {
       {/* Search Result Grid */}
       <section className="space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-bold text-slate-200">Matching Records ({donors.length})</h3>
+          <h3 className="text-lg font-bold text-slate-900">Matching Records ({donors.length})</h3>
           <span className="text-xs text-slate-500 font-medium">Anonymized profiles displayed</span>
         </div>
 
@@ -253,14 +253,14 @@ const HospitalSearch = () => {
               return (
                 <Card 
                   key={donor.donorId}
-                  className="border border-slate-900 flex flex-col h-full bg-slate-950/20"
+                  className="border border-rose-100 flex flex-col h-full bg-white shadow-sm hover:shadow-md transition-shadow"
                   hoverable
                 >
                   <div className="flex-1 space-y-4">
                     {/* Header */}
                     <div className="flex justify-between items-start gap-2">
                       <div>
-                        <h4 className="font-bold text-slate-200">Donor Profile #{donor.donorId}</h4>
+                        <h4 className="font-bold text-slate-900">Donor Profile #{donor.donorId}</h4>
                         <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider block mt-0.5">
                           {donor.gender} &bull; {donor.getAge || new Date().getFullYear() - new Date(donor.dateOfBirth).getFullYear()} years old
                         </span>
@@ -271,8 +271,8 @@ const HospitalSearch = () => {
                         {compat !== null && (
                           <span className={`px-2 py-0.5 rounded text-[10px] font-bold border ${
                             compat 
-                              ? 'bg-teal-500/10 text-teal-400 border-teal-500/20' 
-                              : 'bg-red-500/10 text-red-400 border-red-500/20'
+                              ? 'bg-emerald-50 text-emerald-700 border-emerald-200' 
+                              : 'bg-rose-50 text-rose-700 border-rose-200'
                           }`}>
                             {compat ? 'Compatible' : 'Incompatible'}
                           </span>
@@ -280,14 +280,14 @@ const HospitalSearch = () => {
                       </div>
                     </div>
 
-                    <div className="h-px bg-slate-900"></div>
+                    <div className="h-px bg-rose-100"></div>
 
                     {/* Organs list */}
                     <div className="space-y-1.5 text-left">
                       <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block">Pledged Organs</span>
                       <div className="flex flex-wrap gap-1">
                         {donor.donorOrgans?.map((o) => (
-                          <span key={o.donorOrganId} className="px-2 py-0.5 bg-slate-900 border border-slate-800 rounded text-[10px] text-slate-300">
+                          <span key={o.donorOrganId} className="px-2 py-0.5 bg-rose-50/60 border border-rose-100 rounded text-[10px] text-slate-800 font-medium">
                             {o.organType?.name}
                           </span>
                         ))}
@@ -295,21 +295,21 @@ const HospitalSearch = () => {
                     </div>
 
                     {/* Location */}
-                    <div className="flex items-center gap-1.5 text-slate-400 text-xs pt-1">
-                      <MapPin size={13} className="text-teal-500" />
+                    <div className="flex items-center gap-1.5 text-slate-600 text-xs pt-1">
+                      <MapPin size={13} className="text-rose-500" />
                       <span>{donor.city}, {donor.state}</span>
                     </div>
 
                     {/* Medical flags summary */}
                     {donor.medicalHistory && (
-                      <div className="text-[10px] bg-slate-950 p-2.5 rounded border border-slate-900 text-slate-400 leading-normal line-clamp-2">
-                        <span className="font-bold text-slate-300">Medical Notes:</span> {donor.medicalHistory}
+                      <div className="text-[10px] bg-slate-50 p-2.5 rounded-lg border border-slate-200 text-slate-600 leading-normal line-clamp-2">
+                        <span className="font-bold text-slate-800">Medical Notes:</span> {donor.medicalHistory}
                       </div>
                     )}
 
                   </div>
 
-                  <div className="mt-5 pt-4 border-t border-slate-900/60">
+                  <div className="mt-5 pt-4 border-t border-rose-100">
                     {activeRequestId ? (
                       <Button
                         variant={compat ? 'primary' : 'secondary'}
@@ -333,7 +333,7 @@ const HospitalSearch = () => {
             })}
           </div>
         ) : (
-          <Card className="text-center py-12 border border-slate-900 bg-slate-950/10">
+          <Card className="text-center py-12 border border-rose-100 bg-slate-50/50">
             <p className="text-slate-500 text-sm">
               {loading ? 'Performing database query...' : 'No donors matched the criteria or carry verified status.'}
             </p>
@@ -362,26 +362,26 @@ const HospitalSearch = () => {
       >
         {proposalSuccess ? (
           <div className="text-center py-6 space-y-4">
-            <div className="mx-auto h-16 w-16 bg-teal-500/10 text-teal-400 rounded-full flex items-center justify-center border border-teal-500/20">
+            <div className="mx-auto h-16 w-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center border border-emerald-200">
               <Check size={36} />
             </div>
-            <h4 className="text-lg font-bold text-slate-100">Proposal Dispatched!</h4>
-            <p className="text-sm text-slate-400">
+            <h4 className="text-lg font-bold text-slate-900">Proposal Dispatched!</h4>
+            <p className="text-sm text-slate-600">
               Your match authorization request was logged to the System Administrator queue.
             </p>
           </div>
         ) : (
-          <div className="space-y-4 text-slate-300">
-            <p className="text-xs text-slate-400 leading-normal">
+          <div className="space-y-4 text-slate-700">
+            <p className="text-xs text-slate-600 leading-normal">
               You are proposing a compatibility match between Donor #{selectedDonor?.donorId} and active Patient Request #{activeRequestId}.
             </p>
             
-            <div className="p-3 bg-slate-950 rounded-lg border border-slate-800 space-y-1">
+            <div className="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-1">
               <div className="flex items-center justify-between text-xs">
-                <span>Donor Blood Type: <strong className="text-teal-400">{selectedDonor?.bloodType}</strong></span>
-                <span>Patient Blood Type: <strong className="text-indigo-400">{activeRecipientBlood}</strong></span>
+                <span>Donor Blood Type: <strong className="text-rose-600">{selectedDonor?.bloodType}</strong></span>
+                <span>Patient Blood Type: <strong className="text-indigo-600">{activeRecipientBlood}</strong></span>
               </div>
-              <div className="text-[10px] text-teal-400/80 italic text-center pt-1.5 border-t border-slate-900 mt-1.5">
+              <div className="text-[10px] text-emerald-600 font-semibold italic text-center pt-1.5 border-t border-slate-200 mt-1.5">
                 Immunological matching verified.
               </div>
             </div>

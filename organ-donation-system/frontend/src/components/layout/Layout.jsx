@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
   const { isAuthenticated } = useAuth();
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0b0f19] text-slate-100">
+    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
       <Navbar />
       
       <div className="flex flex-1">

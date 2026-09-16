@@ -162,8 +162,8 @@ const AdminMatches = () => {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-20 gap-3">
-        <RefreshCw className="animate-spin text-teal-400" size={32} />
-        <p className="text-sm text-slate-400">Loading matches coordinator...</p>
+        <RefreshCw className="animate-spin text-rose-500" size={32} />
+        <p className="text-sm text-slate-600">Loading matches coordinator...</p>
       </div>
     );
   }
@@ -174,8 +174,8 @@ const AdminMatches = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-slate-100">Transplant Match Coordinator</h1>
-          <p className="text-slate-400 text-sm">Authorise donor-recipient matches and track surgical completions.</p>
+          <h1 className="text-2xl font-bold text-slate-900">Transplant Match Coordinator</h1>
+          <p className="text-slate-600 text-sm">Authorise donor-recipient matches and track surgical completions.</p>
         </div>
         
         <Button variant="primary" onClick={handleOpenNewModal} className="text-xs font-bold flex items-center gap-1.5 self-start">
@@ -185,26 +185,26 @@ const AdminMatches = () => {
       </div>
 
       {successMsg && (
-        <div className="p-3.5 bg-teal-500/10 border border-teal-500/20 rounded-lg text-sm text-teal-400 flex items-center gap-3">
-          <CheckCircle size={18} className="flex-shrink-0" />
+        <div className="p-3.5 bg-emerald-50 border border-emerald-200 rounded-lg text-sm text-emerald-700 flex items-center gap-3">
+          <CheckCircle size={18} className="flex-shrink-0 text-emerald-600" />
           <span>{successMsg}</span>
         </div>
       )}
 
       {errorMsg && (
-        <div className="p-3.5 bg-red-500/10 border border-red-500/20 rounded-lg text-sm text-red-400 flex items-center gap-3">
-          <AlertTriangle size={18} className="flex-shrink-0" />
+        <div className="p-3.5 bg-rose-50 border border-rose-200 rounded-lg text-sm text-rose-700 flex items-center gap-3">
+          <AlertTriangle size={18} className="flex-shrink-0 text-rose-600" />
           <span>{errorMsg}</span>
         </div>
       )}
 
       {/* Matches queue */}
-      <Card title="Active Transplant Matches" subtitle="Immunologically compatible matches pending surgical finalization">
+      <Card title="Active Transplant Matches" subtitle="Immunologically compatible matches pending surgical finalization" className="border border-rose-100 bg-white shadow-sm">
         {matches.length > 0 ? (
           <div className="overflow-x-auto">
-            <table className="min-w-full divide-y divide-slate-800 text-sm">
+            <table className="min-w-full divide-y divide-slate-200 text-sm">
               <thead>
-                <tr className="text-slate-400 text-xs font-bold uppercase tracking-wider text-left">
+                <tr className="text-slate-500 text-xs font-bold uppercase tracking-wider text-left">
                   <th className="pb-3 pt-2">Match ID</th>
                   <th className="pb-3 pt-2">Donor Reference</th>
                   <th className="pb-3 pt-2">Recipient Request</th>
@@ -213,19 +213,19 @@ const AdminMatches = () => {
                   <th className="pb-3 pt-2 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/50 text-slate-200">
+              <tbody className="divide-y divide-slate-100 text-slate-800">
                 {matches.map((m) => (
-                  <tr key={m.matchId} className="hover:bg-slate-900/30 transition-colors">
-                    <td className="py-3.5 font-mono text-slate-500 text-xs">#{m.matchId}</td>
+                  <tr key={m.matchId} className="hover:bg-rose-50/30 transition-colors">
+                    <td className="py-3.5 font-mono text-slate-400 text-xs">#{m.matchId}</td>
                     <td className="py-3.5">
                       <div className="flex flex-col">
-                        <span className="font-semibold text-slate-200">{m.donor?.fullName}</span>
+                        <span className="font-semibold text-slate-900">{m.donor?.fullName}</span>
                         <span className="text-[10px] text-slate-500">Donor ID: #{m.donor?.donorId} &bull; Blood: {m.donor?.bloodType}</span>
                       </div>
                     </td>
                     <td className="py-3.5">
                       <div className="flex flex-col">
-                        <span className="font-semibold text-slate-200">{m.request?.patientName}</span>
+                        <span className="font-semibold text-slate-900">{m.request?.patientName}</span>
                         <span className="text-[10px] text-slate-500">Request: #{m.request?.requestId} &bull; Blood: {m.request?.patientBloodType}</span>
                       </div>
                     </td>
@@ -238,7 +238,7 @@ const AdminMatches = () => {
                         <Button 
                           variant="ghost" 
                           onClick={() => openDetails(m)}
-                          className="hover:bg-slate-800 p-1.5 rounded-lg"
+                          className="hover:bg-slate-100 p-1.5 rounded-lg text-slate-600"
                         >
                           <Eye size={15} />
                         </Button>
@@ -291,25 +291,25 @@ const AdminMatches = () => {
         }
       >
         {selectedMatch && (
-          <div className="space-y-6 text-sm text-slate-300 text-left">
+          <div className="space-y-6 text-sm text-slate-700 text-left">
             
             {/* Visual match indicator */}
-            <div className="flex items-center justify-center gap-4 bg-slate-950 p-6 rounded-xl border border-slate-800">
+            <div className="flex items-center justify-center gap-4 bg-slate-50 p-6 rounded-xl border border-slate-200">
               <div className="text-center">
                 <Badge variant="secondary" className="mb-1">{selectedMatch.donor?.bloodType}</Badge>
-                <span className="block font-semibold text-slate-200">{selectedMatch.donor?.fullName}</span>
+                <span className="block font-semibold text-slate-900">{selectedMatch.donor?.fullName}</span>
                 <span className="text-[10px] text-slate-500">Donor #{selectedMatch.donor?.donorId}</span>
               </div>
               
               <div className="flex flex-col items-center gap-1.5 px-6">
-                <Heart size={20} className="text-teal-400 fill-teal-400/20" />
-                <ArrowRight size={20} className="text-slate-600" />
-                <span className="text-[10px] font-bold text-teal-400 uppercase tracking-wider">{selectedMatch.request?.organType?.name}</span>
+                <Heart size={20} className="text-rose-500 fill-rose-500/20" />
+                <ArrowRight size={20} className="text-slate-400" />
+                <span className="text-[10px] font-bold text-rose-600 uppercase tracking-wider">{selectedMatch.request?.organType?.name}</span>
               </div>
 
               <div className="text-center">
                 <Badge variant="secondary" className="mb-1">{selectedMatch.request?.patientBloodType}</Badge>
-                <span className="block font-semibold text-slate-200">{selectedMatch.request?.patientName}</span>
+                <span className="block font-semibold text-slate-900">{selectedMatch.request?.patientName}</span>
                 <span className="text-[10px] text-slate-500">Recipient Request #{selectedMatch.request?.requestId}</span>
               </div>
             </div>
@@ -317,22 +317,22 @@ const AdminMatches = () => {
             {/* Coordination details */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
-                  <Hospital size={14} /> Hospital Delivery
+                <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1">
+                  <Hospital size={14} className="text-rose-500" /> Hospital Delivery
                 </h4>
-                <p className="p-3 bg-slate-950 rounded-lg border border-slate-800 text-xs">
+                <p className="p-3 bg-slate-50 rounded-lg border border-slate-200 text-xs text-slate-700">
                   {selectedMatch.request?.hospitalName} <br />
-                  <span className="text-slate-400 text-[10px]">Location: {selectedMatch.request?.hospitalLocation}</span>
+                  <span className="text-slate-500 text-[10px]">Location: {selectedMatch.request?.hospitalLocation}</span>
                 </p>
               </div>
 
               <div className="space-y-2">
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
-                  <Calendar size={14} /> Match Date
+                <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1">
+                  <Calendar size={14} className="text-rose-500" /> Match Date
                 </h4>
-                <p className="p-3 bg-slate-950 rounded-lg border border-slate-800 text-xs">
+                <p className="p-3 bg-slate-50 rounded-lg border border-slate-200 text-xs text-slate-700">
                   Logged: {new Date(selectedMatch.createdAt).toLocaleString()} <br />
-                  <span className="text-slate-400 text-[10px]">Status: {selectedMatch.status}</span>
+                  <span className="text-slate-500 text-[10px]">Status: {selectedMatch.status}</span>
                 </p>
               </div>
             </div>
@@ -340,8 +340,8 @@ const AdminMatches = () => {
             {/* Match notes */}
             {selectedMatch.notes && (
               <div className="space-y-1.5">
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Match Coordination Notes</h4>
-                <p className="p-3 bg-slate-950 rounded-lg border border-slate-800 text-xs leading-normal">
+                <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider">Match Coordination Notes</h4>
+                <p className="p-3 bg-slate-50 rounded-lg border border-slate-200 text-xs leading-normal text-slate-700">
                   {selectedMatch.notes}
                 </p>
               </div>
@@ -390,12 +390,12 @@ const AdminMatches = () => {
           />
 
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-1.5">
+            <label className="block text-sm font-medium text-slate-700 mb-1.5">
               2. Select Compatible Donor
             </label>
             {fetchingCompat ? (
-              <div className="flex items-center justify-center p-4 border border-slate-800 bg-slate-950 rounded-lg text-xs gap-2 text-slate-400">
-                <RefreshCw size={14} className="animate-spin text-teal-400" />
+              <div className="flex items-center justify-center p-4 border border-slate-200 bg-slate-50 rounded-lg text-xs gap-2 text-slate-600">
+                <RefreshCw size={14} className="animate-spin text-rose-500" />
                 Querying compatibility matrices...
               </div>
             ) : compatibleDonors.length > 0 ? (
@@ -412,8 +412,8 @@ const AdminMatches = () => {
                 required
               />
             ) : (
-              <div className="p-3 bg-red-500/10 border border-red-500/20 text-red-400 text-xs rounded-lg flex items-center gap-2">
-                <AlertTriangle size={14} />
+              <div className="p-3 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-lg flex items-center gap-2">
+                <AlertTriangle size={14} className="text-rose-600" />
                 No verified compatible donors available for the selected request.
               </div>
             )}

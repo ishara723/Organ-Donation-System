@@ -10,14 +10,14 @@ const Button = ({
   className = '',
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseStyles = 'inline-flex items-center justify-center px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white disabled:opacity-50 disabled:cursor-not-allowed';
   
   const variants = {
-    primary: 'bg-gradient-to-r from-teal-500 to-indigo-600 hover:from-teal-400 hover:to-indigo-500 text-white shadow-md hover:shadow-lg focus:ring-teal-500',
-    secondary: 'bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700 focus:ring-slate-500',
-    outline: 'bg-transparent border border-teal-500/50 hover:border-teal-400 text-teal-400 hover:bg-teal-500/10 focus:ring-teal-500',
-    danger: 'bg-red-600 hover:bg-red-500 text-white shadow-md focus:ring-red-500',
-    ghost: 'bg-transparent hover:bg-slate-800 text-slate-400 hover:text-slate-100 focus:ring-slate-500',
+    primary: 'bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-600 hover:to-rose-600 text-white shadow-sm shadow-rose-200 focus:ring-rose-400',
+    secondary: 'bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 focus:ring-rose-300',
+    outline: 'bg-white border border-rose-300 hover:border-rose-400 text-rose-600 hover:bg-rose-50 focus:ring-rose-400',
+    danger: 'bg-rose-600 hover:bg-rose-700 text-white shadow-sm focus:ring-rose-400',
+    ghost: 'bg-transparent hover:bg-rose-50 text-slate-600 hover:text-rose-600 focus:ring-rose-300',
   };
 
   return (

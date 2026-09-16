@@ -196,8 +196,8 @@ const DonorProfile = () => {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-20 gap-3">
-        <RefreshCw className="animate-spin text-teal-400" size={32} />
-        <p className="text-sm text-slate-400">Loading form attributes...</p>
+        <RefreshCw className="animate-spin text-rose-500" size={32} />
+        <p className="text-sm text-slate-600">Loading form attributes...</p>
       </div>
     );
   }
@@ -210,7 +210,7 @@ const DonorProfile = () => {
         <Button 
           variant="ghost" 
           onClick={() => navigate('/donor/dashboard')}
-          className="text-slate-400 hover:text-slate-200"
+          className="text-slate-600 hover:text-slate-900"
         >
           <ChevronLeft size={16} className="mr-1" />
           Back to Dashboard
@@ -218,24 +218,24 @@ const DonorProfile = () => {
       </div>
 
       <div className="space-y-1">
-        <h1 className="text-2xl font-bold text-slate-100">
+        <h1 className="text-2xl font-bold text-slate-900">
           {isEditMode ? 'Modify Donor Profile' : 'Configure Donor Profile'}
         </h1>
-        <p className="text-slate-400 text-sm">
+        <p className="text-slate-600 text-sm">
           Please input accurate medical attributes. Anonymized data will be used to coordinate compatibility matches.
         </p>
       </div>
 
       {errors.submit && (
-        <div className="p-3.5 bg-red-500/10 border border-red-500/20 rounded-lg text-sm text-red-400 flex items-center gap-3">
-          <AlertTriangle size={18} className="flex-shrink-0" />
+        <div className="p-3.5 bg-rose-50 border border-rose-200 rounded-lg text-sm text-rose-700 flex items-center gap-3">
+          <AlertTriangle size={18} className="flex-shrink-0 text-rose-600" />
           <span>{errors.submit}</span>
         </div>
       )}
 
       {success && (
-        <div className="p-3.5 bg-teal-500/10 border border-teal-500/20 rounded-lg text-sm text-teal-400 flex items-center gap-3">
-          <CheckCircle size={18} className="flex-shrink-0" />
+        <div className="p-3.5 bg-emerald-50 border border-emerald-200 rounded-lg text-sm text-emerald-700 flex items-center gap-3">
+          <CheckCircle size={18} className="flex-shrink-0 text-emerald-600" />
           <span>Profile saved successfully! Redirecting back to dashboard...</span>
         </div>
       )}
@@ -243,7 +243,7 @@ const DonorProfile = () => {
       <form onSubmit={handleSubmit} className="space-y-6">
         
         {/* Personal Details */}
-        <Card title="Personal Specifications" className="border border-slate-900">
+        <Card title="Personal Specifications" className="border border-rose-100 bg-white shadow-sm">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Input
               label="Full Name"
@@ -286,7 +286,7 @@ const DonorProfile = () => {
         </Card>
 
         {/* Contact Specs */}
-        <Card title="Contact Specifications" className="border border-slate-900">
+        <Card title="Contact Specifications" className="border border-rose-100 bg-white shadow-sm">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Input
               label="Phone Number"
@@ -352,7 +352,7 @@ const DonorProfile = () => {
         </Card>
 
         {/* Medical and Emergency Contacts */}
-        <Card title="Medical Info & Emergency Contacts" className="border border-slate-900">
+        <Card title="Medical Info & Emergency Contacts" className="border border-rose-100 bg-white shadow-sm">
           <div className="space-y-4">
             <Input
               label="Medical History Summary"
@@ -379,11 +379,11 @@ const DonorProfile = () => {
         <Card 
           title="Organ Pledges Selection" 
           subtitle="Check the organs you legally consent to pledge" 
-          className="border border-slate-900"
+          className="border border-rose-100 bg-white shadow-sm"
         >
           <div className="space-y-4">
             {errors.selectedOrgans && (
-              <p className="text-sm font-semibold text-red-500">{errors.selectedOrgans}</p>
+              <p className="text-sm font-semibold text-rose-600">{errors.selectedOrgans}</p>
             )}
             
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -396,18 +396,18 @@ const DonorProfile = () => {
                     onClick={() => handleOrganToggle(organ.organTypeId)}
                     className={`p-4 rounded-xl border text-left flex items-start gap-3 transition-all duration-200 focus:outline-none ${
                       isSelected
-                        ? 'bg-gradient-to-br from-teal-500/20 to-indigo-500/10 border-teal-500 text-slate-100 shadow-md shadow-teal-500/5'
-                        : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700 hover:text-slate-300'
+                        ? 'bg-gradient-to-br from-rose-50 to-rose-100/50 border-rose-500 text-slate-900 shadow-sm'
+                        : 'bg-slate-50 border-slate-200 text-slate-600 hover:border-rose-200 hover:text-slate-800'
                     }`}
                   >
                     <input
                       type="checkbox"
                       checked={isSelected}
                       readOnly
-                      className="mt-0.5 rounded border-slate-700 bg-slate-900 text-teal-600 focus:ring-teal-500/50"
+                      className="mt-0.5 rounded border-slate-300 text-rose-600 focus:ring-rose-500/50"
                     />
                     <div className="space-y-0.5">
-                      <span className="text-xs font-bold block text-slate-200">{organ.name}</span>
+                      <span className="text-xs font-bold block text-slate-900">{organ.name}</span>
                       <span className="text-[10px] text-slate-500 line-clamp-2 leading-tight">{organ.description}</span>
                     </div>
                   </button>
